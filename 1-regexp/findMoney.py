@@ -13,21 +13,32 @@ valuesToReplace = {
         "mln" : "000000",
         "miliardów": "000000000",
         "mld": "000000000",
+        "bilionów": "000000000000",
+        "bln": "000000000000"
         };
 
 singleAmounts = {
         "tysiąc": "1000",
         "milion": "1000000",
-        "miliard": "1000000000" 
+        "miliard": "1000000000",
+        "bilion": "1000000000000"
         };
+
+wordsToIgnoreIfExistsHigher = ["bilionów", "miliardow", "milionów", "tysięcy"];
 
 plnRegex = "(" + simplePLN + \
         "|" + "|".join(r"[0-9 \t\n]+" + textValue for textValue in valuesToReplace.keys()) + \
         "|" + "|".join(singleAmounts.keys()) + \
         ")";
-        
+
+plnRegex = plnRegex + "".join(r"(?:\d+\s" + toIgnore + r"\s)?" for toIgnore in wordsToIgnoreIfExistsHigher);
+       
+#plnRegex = plnRegex + r"(?:\((?:\w+\s*)+\))?";
+plnRegex = plnRegex + r"(?:\(.+\))?";
 
 plnRegex = plnRegex + "\s+(?:starych\s+)zł";
+
+print(plnRegex)
 
 def normalizePLN(num):
     for literal, value in valuesToReplace.items():
