@@ -7,7 +7,7 @@ with open('money2.txt') as fp:
 
 
 beforeSplitFig = plt.figure();
-plt.hist(money);
+plt.hist(money, bins=100);
 plt.ticklabel_format(style='plain');
 plt.xticks(rotation=80);
 plt.title("Histogram wartości pieniężnych dla 2014 roku");
@@ -24,7 +24,7 @@ for value in money:
         higherThan1M.append(value);
 
 lowerThan1MFig = plt.figure();
-plt.hist(lowerThan1M);
+plt.hist(lowerThan1M, bins=100);
 plt.ticklabel_format(style='plain');
 plt.title("Histogram wartości pieniężnych <1mln dla 2014 roku");
 plt.xticks(rotation=80);
@@ -32,7 +32,7 @@ plt.tight_layout()
 lowerThan1MFig.savefig("lowerThan1M.png");
 
 higherThan1MFig = plt.figure();
-plt.hist(higherThan1M);
+plt.hist(higherThan1M, bins=100);
 plt.xticks(rotation=80);
 plt.title("Histogram wartości pięniężnych >1mln dla 2014 roku");
 plt.ticklabel_format(style='plain');
