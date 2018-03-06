@@ -12,4 +12,4 @@ Do zadania 1. i 2. wykorzystano skrypty _findMoney.py_ i _drawHist.py_, do zadan
 Liczba orzeczeń odwołujących się do artykułu 445: 2462
 
 4.
-Liczba orzeczeń ze słowem "szkoda": 17121
+Liczba orzeczeń ze słowem "szkoda": 17248

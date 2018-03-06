@@ -13,7 +13,7 @@ else:
 
 appearances = 0;
 
-forms = "szkodą, szkodę, szkodo, szkody, szkodzie, szkodach, szkodami, szkodom, szkód".split(", ")
+forms = "szkoda, szkodą, szkodę, szkodo, szkody, szkodzie, szkodach, szkodami, szkodom, szkód".split(", ")
 formsRegex = r"\b" + r"\b|\b".join(forms) + r"\b";
 
 def doesAppear(text):
