@@ -1,0 +1,11 @@
+{
+    "aggs": {
+        "top_judges": {
+            "terms": {
+                "field": "judges",
+                "size": 3
+            }
+        }
+    },
+    "size": 0
+}

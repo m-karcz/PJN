@@ -1,0 +1,10 @@
+{
+    "query": {
+        "match_phrase": {
+            "judgmentText": {
+                "query": "trwały uszczerbek na zdrowiu",
+                "slop": 2
+            }
+        }
+    }
+}

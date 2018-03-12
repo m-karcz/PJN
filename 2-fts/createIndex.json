@@ -1,0 +1,38 @@
+{
+	"settings": {
+		"analysis" : {
+			"analyzer" : {
+				"zad2analyzer" : {
+					"type" : "custom",
+					"tokenizer": "standard",
+					"filter": [
+						"lowercase",
+						"morfologik_stem"
+						]
+				}
+			}
+		}
+	},
+	"mappings" : {
+		"doc" : {
+			"properties" : {
+				"judgmentText" : {
+					"type": "text",
+                    "analyzer": "zad2analyzer"
+				},
+				"judgmentDate" : {
+					"type": "date",
+					"format": "yyyy-MM-dd"
+				},
+				"judges" : {
+					"type": "keyword"
+				},
+				"signature": {
+					"type": "keyword"
+				}
+			}
+		}
+	}
+}
+
+

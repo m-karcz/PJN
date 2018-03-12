@@ -1,0 +1,14 @@
+{
+  "name": "2-fts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "gnuplot": "^0.3.1",
+    "request": "^2.83.0",
+    "sync-request": "^6.0.0"
+  }
+}

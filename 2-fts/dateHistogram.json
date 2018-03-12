@@ -1,0 +1,11 @@
+{
+    "aggs" : {
+        "judgments": {
+            "date_histogram": {
+                "field": "judgmentDate",
+                "interval": "month"
+            }
+        }
+    },
+    "size": 0
+}

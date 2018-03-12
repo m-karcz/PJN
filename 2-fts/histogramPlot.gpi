@@ -1,0 +1,6 @@
+set style data histograms
+set terminal png size 400,300 enhanced font "Helvetica,10"
+set output 'histogram.png'
+set ylabel "Liczba orzeczeń"
+set xlabel "Miesiące"
+plot "histogramData.txt" with boxes notitle
