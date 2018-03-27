@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
-import heapq
 import math
 
 wordDict = dict()
 
 
-#from make2grams.py
-#bigramsAmount = 123433838
 bigramsAmount = 148205287
 logBigramsAmount = math.log(bigramsAmount)
 wordsAmount = 0
@@ -43,7 +40,6 @@ def LLR(bigram, bigramAmount):
     yAmount = wordDict[y_word]
     
 
-    #k_table = [bigramAmount, wordsAmount - xAmount, wordsAmount - yAmount, wordsAmount - xAmount - yAmount]
     k_table = [bigramAmount, xAmount - bigramAmount, yAmount - bigramAmount, wordsAmount - xAmount - yAmount]
 
     def rowSums(k):
@@ -88,39 +84,9 @@ with open("bigramsAmount.txt", "r") as bigrams:
         if lastPercent != int(i / bigramsAmount):
             lastPercent = int(i / bigramsAmount)
             print(lastPercent)
-            '''
-    top30 = []
-    for line in bigrams.readlines():
-        i += 100 #toremove
-        if lastPercent != int(i / bigramsAmount):
-            lastPercent = int(i / bigramsAmount)
-            print(lastPercent) #toremove
-        bigram, amount = line.strip().split(": ")
-        if len(top30) < 30:
-            top30.append([splitted[0], pointWise(bigram, int(amount))])
-            if len(top30) == 30:
-                top30.sort(key=lambda x: x[1])
-        else:
-            pointWiseUpperBound = math.log(int(amount))\
-                - logBigramsAmount\
-                + 2 * logWordsAmount
-            if pointWiseUpperBound > top30[0][1]:
-                words = bigram.split(" ")
-                pointWiseUpperBound -= math.log(wordDict[words[0]])
-                if pointWiseUpperBound > top30[0][1]:
-                    pointWiseUpperBound -= math.log(wordDict[words[1]])
-                    if pointWiseUpperBound > top30[0][1]:
-                        top30[0] = [bigram, pointWiseUpperBound]
-                        top30.sort(key=lambda x: x[1])'''
-                
-            
-
-
-
-#pointwiseBigrams.sort(key=lambda x: x[1], reverse=True)
 
 with open("top30pointwise.txt", "w") as pointwiseOutput:
-    for bigram, value in reversed(top30pointwise):#heapq.nlargest(pontwiseBigrams, key=lambda x: x[1]):
+    for bigram, value in reversed(top30pointwise):
         pointwiseOutput.write("{}: {}\n".format(bigram, value))
 
 with open("top30g2.txt", "w") as g2output:
