@@ -19,13 +19,7 @@ lower_bound_amount = 150
 max_case_amount = 1000
 
 
-
-
-N = 0
 def make_vectors(tag_type):
-    global N
-    N = 0
-
     chosen_files = []
 
     def iterate_over_case(case_type, callback):
@@ -60,11 +54,6 @@ def make_vectors(tag_type):
         with open(IDF_filename, "rb") as idf_fp:
             idf = pickle.load(idf_fp)
     else:
-        """
-        cases_dict = dict()
-        for case_type in case_types:
-            cases_dict[case_type] = dict()
-        """
 
         words_dict = dict()
         words_amount = dict()
@@ -76,83 +65,14 @@ def make_vectors(tag_type):
             chosen_files.append(file_name)
             for line in fp.readlines():
                 word, amount = line.split(";")
-
-                #case_dict = cases_dict[case_type]
-
-                #actual_state = case_dict.get(word, [0, 0])
-
-                #case_dict[word] = [actual_state[0] + 1, actual_state[1] + int(amount)]
                 
                 words_dict[word] = words_dict.get(word, 0) + 1
                 words_amount[word] = words_amount.get(word, 0) + int(amount)
 
-        """
-
-        def total_len():
-            return sum([len(case_dict) for case_type, case_dict in cases_dict.items()])
-
-        init_lens = dict()
-
-        minimal_amounts = dict()
-
-
-        for case_type, case_dict in cases_dict.items():
-            init_lens[case_type] = len(case_dict)
-            minimal_amounts[case_type] = 1
-
-        percentage = 0.99
-
-        while True:
-            for case_type, case_dict in cases_dict.items():
-                while len(case_dict) / init_lens[case_type] > percentage:
-                    words_to_remove = []
-                    minimal_amount = minimal_amounts[case_type]
-                    for word, [documents, amount] in case_dict.items():
-                        if amount < minimal_amount:
-                            words_to_remove.append(word)
-                    for word in words_to_remove:
-                        case_dict.pop(word, None)
-                    minimal_amounts[case_type] += 1
-            print(percentage)
-            tot_len = total_len()
-            print(tot_len)
-            if tot_len < 10000:
-                break
-            percentage -= 0.01
-
-
-
-        """
-
-
 
         iterate_over_all_limited(populate_dict)
 
-        #word_amount = {word, amount
-
         words_dict = {word: documents for word, documents in words_dict.items() if words_amount[word] > lower_bound_amount}
-
-        """
-        for i in range(0,20):
-            k = None
-            v = -1
-            for word, amount in words_amount.items():
-                if amount > v:
-                    k = word
-                    v = amount
-            words_amount.pop(k)
-            words_dict.pop(k)
-        """
-        """
-        while(True):
-            words_amount = {word: amount for word, amount in words_amount.items() if amount >= lower_bound_amount}
-            am = len(words_amount)
-            print("{}: {}".format(lower_bound_amount, am))
-            lower_bound_amount += 1
-            if am < 10000:
-                break
-        words_dict = {word: amount for word, amount in words_dict.items() if word in words_amount}
-        """
 
         logN = math.log(N)
 

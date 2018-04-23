@@ -7,15 +7,9 @@ import pickle
 
 TAG = "NT"
 
-#D = 47958
-
-#D = 6795
-
 D = 6349
 
 max_case_amount = 1000
-
-#D = 30000
 
 with open(TAG + "_IDF.pickle", "rb") as idf:
     N = len(pickle.load(idf))
