@@ -54,7 +54,7 @@ Wynik jest zadziwiający, ale zbiór nieotagowany ma lepsze wyniki niż tagowany
 
 ### Zadanie z bardziej zredukowanym zbiorem
 
-Postanowiono jeszcze bardziej zredukować zbiór - obcinając wyrazy, które występują mniej niż 25 razy i mniej niż 100 razy.
+Postanowiono jeszcze bardziej zredukować zbiór - obcinając wyrazy, które występują mniej niż 25 razy i mniej niż 150 razy.
 
 ### > 25
 
