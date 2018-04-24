@@ -1,15 +1,13 @@
 from sklearn.multiclass import OneVsOneClassifier
 from sklearn.svm import LinearSVC
+import sys
 import time
 import numpy as np
 import pickle
 
 
-TAG = "NT"
+TAG = sys.argv[1]
 
-D = 6349
-
-max_case_amount = 1000
 
 with open(TAG + "_IDF.pickle", "rb") as idf:
     N = len(pickle.load(idf))

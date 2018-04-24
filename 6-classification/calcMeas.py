@@ -3,15 +3,6 @@ import pickle
 from statistics import mean
 
 
-TAG = "TG"
-
-D = 6349
-
-max_case_amount = 1000
-
-
-with open(TAG + "_IDF.pickle", "rb") as idf:
-    N = len(pickle.load(idf))
 
 case_types =["ZUS",
         "KAR",
@@ -22,16 +13,11 @@ case_types =["ZUS",
         "KON",
         "CYW"]
 
-case_amount = {
-        "ZUS": 1000,
-        "KAR": 1000,
-        "GOS": 1000,
-        "PIP": 1000,
-        "ROD": 595,
-        "WYK": 690,
-        "KON": 505,
-        "CYW": 1000
-        }
+def count_amount(case, suffix):
+    with open("./splitted/" + case + "_" + suffix + ".txt") as fp:
+        return len(fp.readlines())
+
+case_amount = {case: count_amount(case, "T") for case in case_types}
 
 
 class Results:

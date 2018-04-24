@@ -16,11 +16,17 @@ path_to_parsed = "./parsed/"
 path_to_vectors = "./vectorized/"
 
 lower_bound_amount = 150
-max_case_amount = 1000
+#max_case_amount = 1000
 
+
+N=0
 
 def make_vectors(tag_type):
     chosen_files = []
+
+    global N
+    N = 0
+
 
     def iterate_over_case(case_type, callback):
         folder_path = path_to_parsed + tag_type + "/" + case_type + "/";
@@ -29,24 +35,26 @@ def make_vectors(tag_type):
                 with open(folder_path + file_name) as fp:
                     callback(case_type, file_name, fp)
 
-    def iterate_over_case_limited(case_type, callback):
+    def iterate_over_case_limited(suffix, case_type, callback):
         folder_path = path_to_parsed + tag_type + "/" + case_type + "/";
         case_amount = 0
-        with open("./splitted/" + case_type + "_T.txt") as train_data:
+        with open("./splitted/" + case_type + "_" + suffix + ".txt") as train_data:
             for file_name in train_data.readlines():
                 with open(folder_path + file_name.strip()) as fp:
                     callback(case_type, file_name, fp)
                 case_amount += 1
-                if case_amount > max_case_amount:
-                    break
+     #           if case_amount > max_case_amount:
+     #               break
 
-    def iterate_over_all_limited(callback):
+    def iterate_over_all_limited(suffix, callback):
         for case_type in case_types:
-            iterate_over_case_limited(case_type, callback)
+            iterate_over_case_limited(suffix, case_type, callback)
 
     def iterate_over_all(callback):
-        for case_type in case_types:
-            iterate_over_case(case_type, callback)
+        #for case_type in case_types:
+        #    iterate_over_case(case_type, callback)
+        for suffix in ["T", "V"]:
+            iterate_over_all_limited(suffix, callback)
 
     IDF_filename = tag_type + "_IDF.pickle"
 
@@ -70,7 +78,7 @@ def make_vectors(tag_type):
                 words_amount[word] = words_amount.get(word, 0) + int(amount)
 
 
-        iterate_over_all_limited(populate_dict)
+        iterate_over_all_limited("T", populate_dict)
 
         words_dict = {word: documents for word, documents in words_dict.items() if words_amount[word] > lower_bound_amount}
 
@@ -91,7 +99,7 @@ def make_vectors(tag_type):
         splitted = entry.split(";")
         return [splitted[0], int(splitted[1])]
 
-    def make_vectors(case_type, file_name, fp):
+    def save_vectors(case_type, file_name, fp):
         words = dict(file_entry_to_dict_entry(line) for line in fp.readlines())
         n = sum(words.values())
 
@@ -101,7 +109,7 @@ def make_vectors(tag_type):
         with open(path_to_vectors + tag_type + "/" + case_type + "/" + file_name[:-4] + ".pickle", "wb") as pckl:
             pickle.dump(compressed_vector, pckl)
 
-    iterate_over_all(make_vectors)
+    iterate_over_all(save_vectors)
 
         
 

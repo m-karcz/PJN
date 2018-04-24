@@ -1,15 +1,18 @@
 from sklearn.multiclass import OneVsOneClassifier
 from sklearn.svm import LinearSVC
+from sklearn.svm import SVC
+import sys
 import time
 import numpy as np
 import pickle
 
 
-TAG = "TG"
+TAG = sys.argv[1]
 
-D = 6349
+#D = 6349
+D = 5140
 
-max_case_amount = 1000
+#max_case_amount = 1000
 
 with open(TAG + "_IDF.pickle", "rb") as idf:
     N = len(pickle.load(idf))
@@ -53,10 +56,11 @@ for case_type in case_types:
                 if i % 100 == 0:
                     print(i)
                 case_amount += 1
-                if(case_amount > max_case_amount):
-                    break;
+                #if(case_amount > max_case_amount):
+                #    break;
+
 for case_type in case_types:
-    classifier = LinearSVC()
+    classifier = LinearSVC(C=100) #SVC(C=100, kernel='rbf', gamma = 0.01)# LinearSVC()
     print("START " + case_type)
     print(time.ctime())
     classifier.fit(X_set, tagged_Y_to_values(tagged_Y, case_type))
