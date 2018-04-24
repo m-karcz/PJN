@@ -50,8 +50,7 @@ CYW | 0.881 | 0.949 | 0.914 | 2359
 Micro-average | 0.899 | 0.725 | 0.787 |  
 Macro-average | 0.920 | 0.886 | 0.903 |  
 
-
-Zbiór tagowany w porównaniu do zbioru nietagowanego uzyskał minimalnie gorszy wskaźnik Precision, jednak znacząco wzrosła wartość Recall, a co za tym idzie wzrósł także wskaźnik F1.
+Wynik jest zadziwiający, ale zbiór nieotagowany ma lepsze wyniki niż tagowany.
 
 ### Zadanie z bardziej zredukowanym zbiorem
 
