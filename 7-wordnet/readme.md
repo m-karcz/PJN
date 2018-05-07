@@ -1,4 +1,4 @@
-Zad 3. "szkoda":
+### Zad 3. "szkoda":
 
 Znaczenie: 
 Synonimy: strata, utrata, szkoda, uszczerbek
@@ -6,11 +6,11 @@ Synonimy: strata, utrata, szkoda, uszczerbek
 Znaczenie: brak danych
 Synonimy: szkoda
 
-Zad 4. "wypadek drogowy":
+### Zad 4. "wypadek drogowy":
 
 ![](zad4.png)
 
-Zad 5. wypadek:1
+### Zad 5. wypadek:1
 
 Hiponimie 1 rzędu:
 
@@ -26,7 +26,7 @@ PLWN-00410901-n: wypadek komunikacyjny
 PLWN-00411618-n: katastrofa budowlana
 PLWN-00436137-n: wypadek jądrowy
 
-Zad 6. cd wypadek:1
+### Zad 6. cd wypadek:1
 
 Hiponimie 2 rzędu:
 
@@ -36,7 +36,7 @@ PLWN-00441365-n: kolizja drogowa
 PLWN-00037295-n: obwał
 PLWN-00410902-n: wypadek drogowy
 
-Zad 7.
+### Zad 7.
 
 ![](zad7_1.png)
 
@@ -44,7 +44,7 @@ Zad 7.
 
 Brakowało słowa "bezkolizyjny" w SłowoSieci.
 
-Zad 8.
+### Zad 8.
 
 WNQuery.simLeaCho(szkoda,wypadek)=1.000
 
