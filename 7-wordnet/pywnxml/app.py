@@ -41,7 +41,85 @@ def my_lea_cho(wnid_from, wnid_to):
     
     return - math.log(make_step(set([wnid_from])) / D)
 
+def my_lea_cho_fixed(wnid_from, wnid_to):
+    wnids = [wnid_from, wnid_to]
+    def find_with_relations(wnid, relation_str):
+        synset = synset_from_wnid(wnid)
+        if synset:
+            result = []
+            for wnid, relation in synset.ilrs:
+                if relation == relation_str:
+                    result.append(wnid)
+            return result
+        else:
+            return []
 
+    def find_hypernyms(wnid):
+        return find_with_relations(wnid, "hypernym")
+
+    def find_hyponyms(wnid):
+        return find_with_relations(wnid, "hyponym")
+
+    hypernyms = []
+
+    def max_taxonomy_depth(wnid):
+        hyponyms = find_hyponyms(wnid)
+        if hyponyms:
+            return 1 + max(max_taxonomy_depth(wn) for wn in hyponyms)
+        else:
+            return 0;
+
+    for i, wnid in enumerate(wnids):
+        tree = [[wnid]]
+
+
+        def is_in_tree(wn):
+            for level in tree:
+                for wn_ in level:
+                    if wn_ == wn:
+                        return True
+            return False
+
+        while(True):
+            to_insert = []
+            for last_wnid in tree[-1]:
+                hyps = find_hypernyms(last_wnid)
+                for hyp in hyps:
+                    if not is_in_tree(hyp):
+                        to_insert.append(hyp)
+            if to_insert:
+                tree.append(to_insert);
+            else:
+                break
+
+        hypernyms.append(tree)
+
+    
+    connections = []
+
+    for level_a, list_a in enumerate(hypernyms[0]):
+        for wnid_a in list_a:
+            for level_b, list_b in enumerate(hypernyms[1]):
+                for wnid_b in list_b:
+                    if wnid_a == wnid_b:
+                        connections.append([wnid_a, level_a + level_b])
+
+    taxonomy_depths = []
+    for tree in hypernyms:
+        for root in tree[-1]:
+            taxonomy_depths.append(max_taxonomy_depth(root))
+
+    D = max(taxonomy_depths)
+
+    if connections:
+        min_closest = min(connections, key=lambda x: x[1])[1]
+    else:
+        min_closest = max(len(hypernyms[0]), len(hypernyms[1]))
+        D += 1
+
+    return - math.log(min_closest / (2 * D))
+    
+    
     
 
 print("Zad 3. \"szkoda\":")
@@ -171,8 +249,10 @@ for word1, word2 in to_calc:
     
     value1 = wn.simLeaCho(syn1.wnid, syn2.wnid, "n", "hypernym", True)
 
-    value2 = my_lea_cho(syn1.wnid, syn2.wnid)
+    value2 = my_lea_cho_fixed(syn1.wnid, syn2.wnid)
+
+    #my_lea_cho_fixed(syn1.wnid, syn2.wnid)
 
     print("WNQuery.simLeaCho({},{})={:.3f}".format(word1[0], word2[0], value1))
 
-    print("my_lea_cho({},{})={:.3f}".format(word1[0], word2[0], value2))
+    print("my_lea_cho_fixed({},{})={:.3f}".format(word1[0], word2[0], value2))
