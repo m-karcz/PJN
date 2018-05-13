@@ -43,8 +43,13 @@ Brakowało słowa "bezkolizyjny" w SłowoSieci.
 Zad 8.
 
 WNQuery.simLeaCho(szkoda,wypadek)=1.000
+
 my_lea_cho_fixed(szkoda,wypadek)=2.367
+
 WNQuery.simLeaCho(kolizja,szkoda majątkowa)=0.824
+
 my_lea_cho_fixed(kolizja,szkoda majątkowa)=1.856
+
 WNQuery.simLeaCho(nieszczęście,katastrofa budowlana)=0.648
+
 my_lea_cho_fixed(nieszczęście,katastrofa budowlana)=1.735
