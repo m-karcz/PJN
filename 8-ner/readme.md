@@ -55,7 +55,7 @@ nie | nam_org_institution | 484
 z | nam_oth_currency | 482
 przez | nam_org_institution | 479
 na | nam_liv_person | 471
-- | nam_org_institution | 464
+\- | nam_org_institution | 464
 1 | nam_org_institution | 456
 Sądu | nam_org_institution | 452
 na | nam_oth_currency | 449
@@ -69,7 +69,7 @@ w | nam_pro_media_periodic | 388
 z | nam_pro_media_periodic | 385
 o | nam_loc_gpe_city | 379
 że | nam_org_institution | 378
-- | nam_liv_person | 375
+\- | nam_liv_person | 375
 / | nam_org_institution | 374
 w | nam_pro_title_document | 364
 od | nam_org_institution | 358
@@ -79,7 +79,7 @@ o | nam_org_company | 334
 1 | nam_liv_person | 332
 od | nam_oth_currency | 330
 M | nam_liv_person | 318
-- | nam_loc_gpe_city | 316
+\- | nam_loc_gpe_city | 316
 z | nam_org_organization | 314
 ) | nam_loc_gpe_city | 313
 przez | nam_liv_person | 313
@@ -97,13 +97,13 @@ na | nam_loc_gpe_city | 271
 k | nam_org_institution | 267
 i | nam_oth_currency | 266
 K | nam_liv_person | 266
-- | nam_oth_currency | 265
+\- | nam_oth_currency | 265
 Okręgowy | nam_org_institution | 256
 ) | nam_org_organization | 256
 . | nam_oth_tech | 256
 nie | nam_liv_person | 255
 r | nam_liv_person | 254
-- | nam_org_company | 254
+\- | nam_org_company | 254
 że | nam_liv_person | 253
 o | nam_oth_currency | 247
 ( | nam_org_organization | 244
